@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Time and Date</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(to right, #3494e6, #ec6ead);
+      animation: backgroundAnimation 10s infinite alternate;
+    }
+
+    @keyframes backgroundAnimation {
+      0% {
+        background: linear-gradient(to right, #3494e6, #ec6ead);
+      }
+      100% {
+        background: linear-gradient(to right, #ec6ead, #3494e6);
+      }
+    }
+
+    .time-date-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .time-date-container h2 {
+      color: #333;
+    }
+
+    .clock {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .date {
+      font-size: 1.5em;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="time-date-container">
+    <h2>Current Time and Date</h2>
+    <div class="clock" id="clock"></div>
+    <div class="date" id="date"></div>
+  </div>
+
+  <script>
+    function updateTime() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+
+      hours = hours < 10 ? '0' + hours : hours;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      var timeString = hours + ':' + minutes + ':' + seconds;
+      document.getElementById('clock').innerHTML = timeString;
+
+      var dateString = now.toDateString();
+      document.getElementById('date').innerHTML = dateString;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime(); // Initial call to display time immediately
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+body {
+    background: linear-gradient(to right, #283048, #859398);
+    color: #fff;
+}
+
+#results-container {
+    background: linear-gradient(to right, #84fab0, #8fd3f4);
+}
+
+.btn-info {
+    color: #fff;
+}
+
+footer {
+    background: linear-gradient(to right, #2c3e50, #34495e);
+    color: #fff;
+}

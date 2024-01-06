@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="t1styles.css">
+    <title>My Web Page</title>
+</head>
+<body>
+    <header>
+        <h1>Details Web Page</h1>
+    </header>
+
+    <nav>
+        <a href="#" onclick="displayInformation('Home')">Home</a>
+        <a href="#" onclick="displayInformation('About')">About</a>
+        <a href="#" onclick="displayInformation('Contact')">Contact</a>
+    </nav>
+
+    <section>
+        <form id="myForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required autocomplete="off">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required autocomplete="off">
+
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+
+        <div class="results-container">
+            <!-- Display results here -->
+        </div>
+    </section>
+
+    <footer>
+        &copy; Lavanya.A.N | 2023
+    </footer>
+
+    <script>
+        function submitForm() {
+            // Perform any form processing here
+            
+            // Redirect to another page
+            window.location.href = "t1.html";
+        }
+
+        function displayInformation(page) {
+            // Display information based on the clicked page
+            let information = "";
+
+            switch (page) {
+                case 'Home':
+                    information = "Welcome to the Home Page! I am Lavanya.A.N";
+                    break;
+                case 'About':
+                    information = "I am persuing engineering in computer science and engineering";
+                    break;
+                case 'Contact':
+                    information = "Email - lavanya7215@gmail.com.";
+                    break;
+                default:
+                    information = "";
+            }
+
+            // Display information in the results container
+            document.querySelector('.results-container').innerHTML = information;
+        }
+    </script>
+</body>
+</html>

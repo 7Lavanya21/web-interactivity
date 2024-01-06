@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind-Blowing Quiz with Cat Images</title>
+    <style>
+        body {
+            background-image: url('https://source.unsplash.com/1600x900/?nebula'); /* Mind-blowing background image */
+            background-size: cover;
+            font-family: 'Pacifico', cursive;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: black;
+        }
+
+        #container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+        }
+
+        #quizForm {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            color: black;
+        }
+
+        #result {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: black;
+        }
+
+        #quizForm p {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="quizForm">
+            <p>1. What is the capital of France?</p>
+            <label><input type="radio" name="q1" value="paris"> Paris</label>
+            <label><input type="radio" name="q1" value="berlin"> Berlin</label>
+            <label><input type="radio" name="q1" value="london"> London</label>
+
+            <p>2. What is the largest mammal in the world?</p>
+            <label><input type="radio" name="q2" value="elephant"> Elephant</label>
+            <label><input type="radio" name="q2" value="bluewhale"> Blue Whale</label>
+            <label><input type="radio" name="q2" value="giraffe"> Giraffe</label>
+
+            <p>3. How many continents are there?</p>
+            <label><input type="radio" name="q3" value="5"> 5</label>
+            <label><input type="radio" name="q3" value="6"> 6</label>
+            <label><input type="radio" name="q3" value="7"> 7</label>
+
+            <br>
+            <button type="button" id="submitBtn">Submit</button>
+            <p id="refreshMessage">NOTE:Press refresh to see a different background.</p>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            // Get selected answers
+            var answer1 = document.querySelector('input[name="q1"]:checked');
+            var answer2 = document.querySelector('input[name="q2"]:checked');
+            var answer3 = document.querySelector('input[name="q3"]:checked');
+
+            // Check if all questions are answered
+            if (answer1 && answer2 && answer3) {
+                // Check answers
+                var correctAnswers = 0;
+
+                if (answer1.value === 'paris') correctAnswers++;
+                if (answer2.value === 'bluewhale') correctAnswers++;
+                if (answer3.value === '7') correctAnswers++;
+
+                // Display result
+                var resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = '';
+
+                var img = document.createElement('img');
+                if (correctAnswers === 3) {
+                    img.src = 'download (2).jpeg'; // Different cute cat image for correct answers
+                    resultDiv.innerHTML = '<p>Congratulations! All answers are correct.</p>';
+                } else {
+                    img.src = 'download1.jpeg'; // Sad cat image for incorrect answers
+                    resultDiv.innerHTML = '<p>Oops! Some answers are incorrect.</p>';
+                }
+
+                resultDiv.appendChild(img);
+            } else {
+                alert('Please answer all questions before submitting.');
+            }
+        });
+    </script>
+
+</body>
+</html>

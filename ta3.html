@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Integration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            color: #495057;
+            font-weight: bold;
+        }
+
+        input {
+            width: calc(50% - 16px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 48%;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #resultsContainer {
+            width: 48%;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+        <h1 class="mt-4">Simple Calculator</h1>
+
+        <!-- Form with input and buttons -->
+        <form id="calcForm">
+            <div class="form-group">
+                <label for="num1">Enter Number 1:</label>
+                <input type="number" class="form-control" id="num1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="num2">Enter Number 2:</label>
+                <input type="number" class="form-control" id="num2" required>
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-success" onclick="addNumbers()">Add</button>
+                <button type="button" class="btn btn-danger" onclick="subtractNumbers()">Subtract</button>
+            </div>
+            
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="squareNumber('num1')">Square Number 1</button>
+                <button type="button" class="btn btn-primary" onclick="squareNumber('num2')">Square Number 2</button>
+            </div>
+        </form>
+
+        <!-- Result and Message Display -->
+        <div id="resultsContainer"></div>
+    </div>
+
+    <!-- JavaScript Section -->
+    <script>
+        // JavaScript functions to perform calculations
+        function addNumbers() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                displayMessage('Please enter valid numbers.');
+                return;
+            }
+
+            var result = num1 + num2;
+
+            // Display result dynamically on the page
+            displayResult('Result: ' + result);
+            displayMessage('Addition performed!');
+            changeBackgroundColor();
+        }
+
+        function subtractNumbers() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                displayMessage('Please enter valid numbers.');
+                return;
+            }
+
+            var result = num1 - num2;
+
+            // Display result dynamically on the page
+            displayResult('Result: ' + result);
+            displayMessage('Subtraction performed!');
+            changeBackgroundColor();
+        }
+
+        function squareNumber(inputField) {
+            var num = parseFloat(document.getElementById(inputField).value);
+
+            if (isNaN(num)) {
+                displayMessage('Please enter a valid number.');
+                return;
+            }
+
+            var result = num * num;
+
+            // Display result dynamically on the page
+            displayResult('Square of ' + inputField + ': ' + result);
+            displayMessage('Square performed for ' + inputField);
+            changeBackgroundColor();
+        }
+
+        function displayResult(result) {
+            // Create a new result element
+            var resultElement = document.createElement('p');
+            resultElement.innerText = result;
+
+            // Append the result to the container
+            document.getElementById('resultsContainer').appendChild(resultElement);
+        }
+
+        function displayMessage(message) {
+            // Create a new message element
+            var messageElement = document.createElement('p');
+            messageElement.innerText = message;
+
+            // Append the message to the container
+            document.getElementById('resultsContainer').appendChild(messageElement);
+        }
+
+        function changeBackgroundColor() {
+            // Generate a random color
+            var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+
+            // Set the background color
+            document.body.style.backgroundColor = randomColor;
+        }
+
+        // Event listeners to trigger functions on form submission
+        document.getElementById('calcForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission to avoid page refresh
+            addNumbers(); // You can call any function here based on your requirement
+        });
+    </script>
+
+</body>
+</html>
